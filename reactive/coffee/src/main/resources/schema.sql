@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS product_coffee;
+
+CREATE TABLE product_coffee (
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  name VARCHAR(250) NOT NULL,
+  amount VARCHAR(250) NOT NULL,
+  quantity INT DEFAULT NULL
+);
