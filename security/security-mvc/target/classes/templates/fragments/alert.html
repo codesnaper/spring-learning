@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="alert" style="width: 30%;
+    position: fixed;
+    top: 10px;
+    right: 10px
+;
+">
+    <div th:if="${alert != null}" class="alert alert-dismissible fade show" th:classappend="${alert.alertCode.value}" role="alert">
+        <span th:if="${alert.message != null}" th:text="${alert.message}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>

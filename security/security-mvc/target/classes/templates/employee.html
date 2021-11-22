@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="fragments/head :: head"></head>
+
+<body>
+	<header th:insert="fragments/header :: header"></header>
+	<div th:insert="fragments/alert :: alert"></div>
+	<div class="container ">
+		<h3 th:text="${employee.id} ? 'Employee Edit': 'Add New Employee'"></h3>
+		<div class="row border border-dark mt-5 p-3">
+			<div class="col-12">
+				<h5 class="text-center">Employee : <span th:text="${employee.name} ? ${employee.name}: ''"></span></h5>
+			</div>
+			<form th:if="${employee.id}"th:action="@{/admin/employee}" th:object="${employee}" method="put">
+				<div th:insert="fragments/employeeForm :: employeeform"></div>
+			</form>
+			<form th:if="!${employee.id}"th:action="@{/admin/employee}" th:object="${employee}" method="post">
+				<div th:insert="fragments/employeeForm :: employeeform"></div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

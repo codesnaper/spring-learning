@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="employeeform" >
+    <div class="col-md-6 offset-md-3 col-12 ">
+        <div class="row mt-4">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="floatingInputGrid4" placeholder="ID"  th:value="${employee.id} ? ${employee.id} : 'Yet to be generated'" disabled>
+                    <label for="floatingInputGrid4">EMPLOYEE ID</label>
+                </div>
+            </div>
+        </div>
+        <div th:if="!${employee.id}" class="row g-2 mt-4">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" th:field="*{userName}" class="form-control" id="floatingInputGrid8" placeholder="UserName"  >
+                    <label for="floatingInputGrid8">User Name</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="password" th:field="*{password}" class="form-control" id="floatingInputGrid19" placeholder="Password"   >
+                    <label for="floatingInputGrid19">Password</label>
+                </div>
+            </div>
+        </div>
+        <div class="row g-2 mt-4">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" th:field="*{fname}" class="form-control" id="floatingInputGrid" placeholder="First name"  th:value="${employee.fname} ? ${employee.fname}: '' " >
+                    <label for="floatingInputGrid">First Name</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" th:field="*{lname}" class="form-control" id="floatingInputGrid1" placeholder="Last name"  th:value="${employee.lname} ? ${employee.lname}: ''" >
+                    <label for="floatingInputGrid1">Last Name</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="number" th:field="*{contact}" class="form-control" id="floatingInputGrid2" placeholder="Contact"  th:value="${employee.contact} ?${employee.contact}:''" >
+                    <label for="floatingInputGrid2">Contact</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col d-flex"><h5 style="margin-top: auto; margin-bottom: auto">ACCESS</h5></div>
+            <div class="col">
+                <div class="custom-control custom-radio custom-control-inline" >
+                    <select th:field="*{role}" class="form-select" multiple aria-label="multiple select example" >
+                        <option th:each="role : ${T(com.example.security.modal.Role).values()}"
+                                th:value="${role}"
+                                th:disabled="${role == T(com.example.security.modal.Role).NO_ROLE}"
+                                th:selected = "${role == T(com.example.security.modal.Role).NO_ROLE OR #lists.contains(employee.role,role)}"
+                        >
+                            <span  th:text="${role}"></span>
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit" th:text="${employee.id} ? 'Edit Employee': 'Add Employee'">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
